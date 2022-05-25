@@ -1,6 +1,6 @@
 import React, {useEffect, useState}from 'react'
 import DatePicker from 'react-datepicker'
-import {AbsenceDatePick, postAbsenceClass, updatePresence} from '../../utils/api'
+import {AbsenceDatePick, postAbsenceClass, updatePresence, updateStudentBankAndPresence} from '../../utils/api'
 import "react-datepicker/dist/react-datepicker.css";
 import styled from 'styled-components'
 const AbsenceDate = ({class_id, setStudentLesson, student_id, firstName, lastName}) => {
@@ -9,12 +9,11 @@ const AbsenceDate = ({class_id, setStudentLesson, student_id, firstName, lastNam
  const changeDate = async (date) => {
      
    const curr = await  AbsenceDatePick(class_id, date)
-   
          setStartDate(date)
-// console.log(student_id);
-      const post = await  postAbsenceClass(firstName, lastName, student_id)
+
+     const post = await  postAbsenceClass(firstName, lastName, student_id)
      const secondCurr = await AbsenceDatePick(post.class._id, curr.AbsenceDate)
-        //  console.log(post);
+     updateStudentBankAndPresence(student_id, -1, 1)
          setStudentLesson(current => [...current, post.class] )
           
          setStudentLesson((setDate) => {
@@ -36,8 +35,7 @@ const AbsenceDate = ({class_id, setStudentLesson, student_id, firstName, lastNam
                 newDate.splice(i,1,curr)
             }
         }
-        //   console.log(curr);
-        //   console.log(newDate);
+
         return newDate
     })
 // })
@@ -66,7 +64,7 @@ z-index: 2;
   background-color: lightblue;
   font-color
   padding:0px;
-  border:0px;
+  border:2px solid black;
   &:hover {
     transform: scale(1.3);
   }

@@ -48,7 +48,7 @@ z-index: 2;
   background-color: lightblue;
   font-color
   padding:0px;
-  border:0px;
+  border:2px solid black;
   &:hover {
     transform: scale(1.3);
   }

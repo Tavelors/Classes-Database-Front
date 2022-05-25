@@ -26,7 +26,7 @@ SetCreateClassButton(true)
   return (
     <>
     <ul>
-        <li>
+        <li  >
             <span>{student.firstName} {student.lastName}</span>
             <p>Date Started: {student.created}</p>
             <button onClick={handleClick} >Create Class

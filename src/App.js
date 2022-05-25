@@ -8,6 +8,7 @@ import Student from "./components/Student";
 import Payments from "./components/Payments";
 import AllPayments from "./components/AllPayments";
 import Tickets from "./components/Tickets";
+import ClassPayment from "./components/ClassPayment";
 import Nav from "./components/Nav";
 import { useState } from "react";
 function App() {
@@ -40,6 +41,7 @@ function App() {
           />
           <Route path="/home/payments" element={<AllPayments />} />
           <Route path="/home/tickets" element={<Tickets />} />
+          <Route path="/home/payment/:class_id" element={<ClassPayment />} />
         </Routes>
       </Router>
     </div>

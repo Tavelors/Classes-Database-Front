@@ -159,3 +159,15 @@ export const updateStudentBankAndPresence = async (
 
   return data;
 };
+
+export const updateColor = async (colorChange, class_id) => {
+  const { data } = await axios.put(`${otherURL}/class/update/${class_id}`, {
+    colorChange: colorChange,
+  });
+  return data;
+};
+
+export const getClassPayment = async (class_id) => {
+  const { data } = await axios.get(`${otherURL}/pay/class/${class_id}`);
+  return data;
+};
