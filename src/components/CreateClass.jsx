@@ -8,18 +8,21 @@ import styled from 'styled-components'
 
 const CreateClass = ({firstName, lastName, student_id, trigger, setTrigger, createClassButton, SetCreateClassButton, setStudentLesson}) => {
 
-      useEffect(() => {
+      const HandleClick = () => {
 
-          if(createClassButton) {
+        setTrigger(false)
+        if(createClassButton) {
+          
+          postClass(student_id).then((post) => {
+            
+            setStudentLesson(curr => [...curr, post])
               
-          postClass(firstName,lastName, student_id).then((post) => {
-    
-                setStudentLesson(curr => [...curr, post])
-              
-              SetCreateClassButton(false)
-            })
+            SetCreateClassButton(false)
+          })
         }
-    },[firstName, lastName, student_id,createClassButton, SetCreateClassButton, setStudentLesson])
+        window.location.reload(false);
+      }
+    
     
 return (trigger) ? (
     <PopupStyle>
@@ -29,7 +32,7 @@ return (trigger) ? (
             <h2 className="popup-message" >Class Created!</h2>
            
            
-            <button onClick={() => setTrigger(false)} className="popup-button">close</button>
+            <button onClick={HandleClick} className="popup-button">close</button>
         </div>
     </div>
     </PopupStyle>

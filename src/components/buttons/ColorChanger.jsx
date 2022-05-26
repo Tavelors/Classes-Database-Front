@@ -1,5 +1,6 @@
 import React from 'react'
 import {updateColor} from '../../utils/api'
+import styled from 'styled-components'
 const ColorChanger = ({index, class_id, colorChange, setStudentLesson}) => {
 
 
@@ -39,7 +40,15 @@ const ColorChanger = ({index, class_id, colorChange, setStudentLesson}) => {
         
       
 
-  return <button onClick={handleClick} >{index}</button>
+  return <Button onClick={handleClick} >{index}</Button>
 }
+
+const Button = styled.button/*css*/`
+background-color: #ffa0fb;
+&:hover {
+    transform: scale(1.1);
+
+}
+`
 
 export default ColorChanger

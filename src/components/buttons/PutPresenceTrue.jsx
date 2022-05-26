@@ -25,10 +25,12 @@ const PutPresenceTrue = ({class_id, setPutPresence, setStudentLesson, student_id
         
     }
 // console.log(putPresence);
-  return <Button style={{background: 'red'}} onClick={presenceClick} >&nbsp;</Button>
+  return <Button style={{background: 'red'}} onClick={presenceClick} >✔️</Button>
 }
 
 const Button = styled.button/*css*/`
+height:40px;
+width: 40px;
 &:hover {
     transform: scale(1.1);
 }

@@ -27,6 +27,8 @@ const PutRescheduledFalse = ({class_id, setPutRescheduled, setStudentLesson}) =>
 }
 
 const Button = styled.button/*css*/`
+height:40px;
+width: 40px;
 &:hover {
     transform: scale(1.1);
 }

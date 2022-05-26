@@ -1,6 +1,7 @@
 import React, {useEffect, useState}from 'react'
 import {updatePresence,updateStudentBank} from '../../utils/api'
 import styled from 'styled-components'
+import {GenIcon} from 'react-icons'
 
 const PutAbsenceTrue = ({class_id, setPutAbsence, setStudentLesson, student_id}) => {
     // const [putPresence, setPutPresence] = useState(false)
@@ -27,13 +28,12 @@ const PutAbsenceTrue = ({class_id, setPutAbsence, setStudentLesson, student_id})
 
     }
 // console.log(putPresence);
-  return <Button style={{background: 'red'}} onClick={presenceClick} >&nbsp;</Button>
+  return <Button style={{background: 'red'}} onClick={presenceClick} > ❌</Button>
 }
 
 const Button = styled.button/*css*/`
-// height: 30px;
-// width: 30px;
-// border-radius: 10px;
+height:40px;
+width: 40px;
 &:hover {
     transform: scale(1.1);
 }

@@ -26,14 +26,8 @@ export const getStudents = async () => {
   return data;
 };
 
-export const postClass = async (firstName, lastName, student_id) => {
-  console.log(student_id);
-  console.log(firstName);
-  console.log(lastName);
-  const { data } = await axios.post(`${otherURL}/class/${student_id}`, {
-    firstName: firstName,
-    lastName: lastName,
-  });
+export const postClass = async (student_id) => {
+  const { data } = await axios.post(`${otherURL}/class/${student_id}`);
   return data;
 };
 
@@ -169,5 +163,47 @@ export const updateColor = async (colorChange, class_id) => {
 
 export const getClassPayment = async (class_id) => {
   const { data } = await axios.get(`${otherURL}/pay/class/${class_id}`);
+  return data;
+};
+
+export const updateLock = async (class_id, lockBool) => {
+  const { data } = await axios.put(`${otherURL}/class/update/${class_id}`, {
+    lockButton: lockBool,
+  });
+  return data;
+};
+
+export const updatePaymentType = async (pay_id, lockBool) => {
+  const { data } = await axios.put(`${otherURL}/pay/update/${pay_id}`, {
+    lockButton: lockBool,
+  });
+  return data;
+};
+
+export const updatePaymentDate = async (pay_id, paymentDate) => {
+  const { data } = await axios.put(`${otherURL}/pay/update/${pay_id}`, {
+    dateChange: paymentDate,
+  });
+  return data;
+};
+
+export const updatePaymentPaid = async (pay_id, paidBool) => {
+  const { data } = await axios.put(`${otherURL}/pay/update/${pay_id}`, {
+    paid: paidBool,
+  });
+  return data;
+};
+
+export const updatePaymentConcluded = async (pay_id, concludedBool) => {
+  const { data } = await axios.put(`${otherURL}/pay/update/${pay_id}`, {
+    concluded: concludedBool,
+  });
+  return data;
+};
+
+export const putPaymentType = async (pay_id, paymentTypeBool) => {
+  const { data } = await axios.put(`${otherURL}/pay/update/${pay_id}`, {
+    paymentType: paymentTypeBool,
+  });
   return data;
 };

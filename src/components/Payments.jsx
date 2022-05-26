@@ -1,6 +1,12 @@
 import React, {useEffect, useState} from 'react'
 import {getPaymentByStudent,getStudentById} from '../utils/api'
+import styled from 'styled-components'
 import {useParams} from 'react-router-dom'
+import PaymentDate from './paymentButtons/PaymentDate'
+import PaymentPaid from './paymentButtons/PaymentPaid'
+import PaymentConcluded from './paymentButtons/PaymentConcluded'
+import PaymentType from './paymentButtons/PaymentType'
+import Moment from 'react-moment'
 const Payments = () => {
     const {student_id} = useParams()
 const [pay, setPay] = useState([])
@@ -19,40 +25,56 @@ const [student, setStudent] = useState({})
   return (
       <>
       <p>{student.firstName} {student.lastName}</p>
-    <table>
+    <StyledTable>
          <thead>
 
 <tr>
-    <th>Ticket</th>
-    <th>Up Front</th>
-    <th>After Month</th>
+    
+    <th>Payment Type</th>
     <th>Date</th>
     <th>Paid</th>
     <th>Concluded</th>
+
 </tr>
 </thead>
         {pay.map((list, index) => {
             index++
+            console.log(list);
             return (
 
                 <tbody key={list._id}>
            <tr>
-           <td>{index}</td>
            
-           <td><input type='checkbox' /></td>
-           <td><input type='checkbox' /></td>
-           <td></td>
-           <td><input type='checkbox' /></td>
-           <td><input type='checkbox' /></td>
+           
+           <td><PaymentType pay_id={list._id} setPay={setPay} paymentType={list.paymentType} /> </td>
+           <TD  ><PaymentDate pay_id={list._id} setPay={setPay}  /><Moment className='date-format' format='DD/MM/YYYY' >{list.dateChange}</Moment></TD>
+           <td><PaymentPaid pay_id={list._id} setPay={setPay} paidBoolean={list.paid} /></td>
+           <td><PaymentConcluded pay_id={list._id} setPay={setPay} concludedBool={list.concluded} /></td>
          
+           
         
            </tr>
        </tbody>
+       
                )
         })}
-    </table>
+    </StyledTable>
+    
       </>
   )
 }
+const StyledTable = styled.table/*css*/`
+margin-right: auto;
+margin-left: auto;
+`
+
+const TD = styled.td/*css*/`
+.date-format {
+    color: black ;
+    font-size:18px;
+    font-weight: bold;
+
+}
+`
 
 export default Payments

@@ -1,21 +1,31 @@
 import React, {useEffect, useState}from 'react'
 import {useParams} from 'react-router-dom'
 import {getClassPayment} from '../utils/api'
+import PayUpFront from './paymentButtons/PayUpFront'
 const ClassPayment = () => {
 const {class_id} = useParams()
-const [payMent, setPayMent] = useState({})
+const [payMent, setPayMent] = useState([])
+
     useEffect(() => {
-        getClassPayment(class_id).then((pay) => {
-            setPayMent(pay)
-        })
+        const fetchData = async () => {
+        const data = await getClassPayment(class_id)
+        setPayMent(data)
+        console.log(data);
+        }
+        fetchData()
+
     }, [class_id])
     
     
 
+console.log(payMent[0]);
+if(payMent === undefined) {
+  return;
+} else {
 
-console.log(payMent);
+  
   return (
-      <>
+    <>
       <table>
           <thead>
             <tr>
@@ -27,7 +37,7 @@ console.log(payMent);
           <tbody>
         <tr>
             <td></td>
-            <td><button>{payMent.upFront}up Front</button></td>
+            <td><PayUpFront pay_id={payMent} /></td>
             <td><button>{payMent.afterMonth}After Month</button></td>
         </tr>
           </tbody>
@@ -50,6 +60,7 @@ console.log(payMent);
       </table>
       </>
   )
+}
 }
 
 export default ClassPayment

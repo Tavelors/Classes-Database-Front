@@ -24,13 +24,12 @@ const RescheduledAbsence = ({class_id, setPutRescheduledPresence, setStudentLess
         })
     }
 // console.log(putPresence);
-  return <Button style={{background: 'red'}} onClick={presenceClick} >&nbsp;</Button>
+  return <Button style={{background: 'red'}} onClick={presenceClick} >❌</Button>
 }
 
 const Button = styled.button/*css*/`
-// height: 30px;
-// width: 30px;
-// border-radius: 10px;
+height:40px;
+width: 40px;
 &:hover {
     transform: scale(1.1);
 }

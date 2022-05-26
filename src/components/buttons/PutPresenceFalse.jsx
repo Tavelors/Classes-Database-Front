@@ -24,10 +24,12 @@ const PutPresenceFalse = ({class_id, setPutPresence, setStudentLesson, student_i
         })
     }
 // console.log(putPresence);
-  return <Button style={{background: 'green'}} onClick={presenceClick} >&nbsp;</Button>
+  return <Button style={{background: 'green'}} onClick={presenceClick} ></Button>
 }
 
 const Button = styled.button/*css*/`
+height:40px;
+width: 40px;
 &:hover {
     transform: scale(1.1);
 }

@@ -58,40 +58,40 @@ const NavStyles = styled.nav/*css*/`
     display: none;
     color: #398CDA;
   }
-  @media only screen and (max-width: 600px) {
-    padding: 0;
-    .hide-item {
-      transform: translateY(calc(-100% - var(--top)));
-    }
-    .mobile-menu-icon {
-      display: block;
-    }
-    .navItems {
-      --top: 1rem;
-      transition: 0.3s ease transform;
-      background-color: #c2d3f2 ;
-      padding: 2rem;
-      width: 90%;
-      max-width: 300px;
-      border-radius: 12px;
-      position: absolute;
-      right: 1rem;
-      top: var(--top);
-      .closeNavIcon {
-        display: block;
-        width: 3rem;
-        margin: 0 0 0 auto;
-        cursor: pointer;
-        * {
-          pointer-events: none;
-        }
-      }
-      li {
-        display: block;
-        margin-bottom: 1rem;
-      }
-    }
-  }
+  // @media only screen and (max-width: 600px) {
+  //   padding: 0;
+  //   .hide-item {
+  //     transform: translateY(calc(-100% - var(--top)));
+  //   }
+  //   .mobile-menu-icon {
+  //     display: block;
+  //   }
+  //   .navItems {
+  //     --top: 1rem;
+  //     transition: 0.3s ease transform;
+  //     background-color: #c2d3f2 ;
+  //     padding: 2rem;
+  //     width: 90%;
+  //     max-width: 300px;
+  //     border-radius: 12px;
+  //     position: absolute;
+  //     right: 1rem;
+  //     top: var(--top);
+  //     .closeNavIcon {
+  //       display: block;
+  //       width: 3rem;
+  //       margin: 0 0 0 auto;
+  //       cursor: pointer;
+  //       * {
+  //         pointer-events: none;
+  //       }
+  //     }
+  //     li {
+  //       display: block;
+  //       margin-bottom: 1rem;
+  //     }
+  //   }
+  // }
 `;
 
 const Nav = () => {
@@ -139,7 +139,7 @@ const Nav = () => {
                 tabIndex={0}
                 >Students</NavLink>
             </li>
-            <li>
+            {/* <li>
                 <NavLink
                  to='/home/payments'
                 
@@ -148,8 +148,8 @@ const Nav = () => {
                  onKeyDown={() => setShowNav(!showNav)}
                  tabIndex={0}
                  >Payments</NavLink>
-            </li>
-            <li>
+            </li> */}
+            {/* <li>
                 <NavLink 
                 to='/home/tickets'
                
@@ -158,7 +158,7 @@ const Nav = () => {
                 onKeyDown={() => setShowNav(!showNav)}
                 tabIndex={0}
                  >Tickets</NavLink>
-            </li>
+            </li> */}
             
         </ul>
     </NavStyles>

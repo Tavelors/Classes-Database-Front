@@ -62,7 +62,7 @@ z-index: 2;
   margin-bottom: 2px;
   font-size:12px;
   background-color: lightblue;
-  font-color
+  font-color:
   padding:0px;
   border:2px solid black;
   &:hover {

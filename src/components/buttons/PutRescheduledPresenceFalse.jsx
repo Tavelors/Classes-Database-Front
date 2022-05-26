@@ -28,6 +28,8 @@ const PutRescheduledPresenceFalse = ({class_id, setPutRescheduledPresence, setSt
 }
 
 const Button = styled.button/*css*/`
+height:40px;
+width: 40px;
 &:hover {
     transform: scale(1.1);
 }
