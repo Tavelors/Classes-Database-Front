@@ -13,21 +13,22 @@ const [filterStudent, setfilterStudent] = useState('')
             
            let newCurr = [...curr]
             let studentFilt = newCurr.filter((filt) => {
-                if (filt.firstName.includes(filterStudent.split('')[0]) && filterStudent.length === 1) {
+
+                if (filt.firstName.toLowerCase().includes(filterStudent.split('')[0]) && filterStudent.length === 1) {
                     return filt
-                } else if (filt.firstName.includes(filterStudent.split('')[0]) && filt.firstName.includes(filterStudent.split('')[1]) && filterStudent.length === 2) {
+                } else if (filt.firstName.toLowerCase().includes(filterStudent.split('')[0]) && filt.firstName.toLowerCase().includes(filterStudent.split('')[1]) && filterStudent.length === 2) {
                     return filt
-                } else if (filt.firstName.includes(filterStudent.split('')[0]) && filt.firstName.includes(filterStudent.split('')[1]) && filt.firstName.includes(filterStudent.split('')[2]) && filterStudent.length === 3) {
+                } else if (filt.firstName.toLowerCase().includes(filterStudent.split('')[0]) && filt.firstName.toLowerCase().includes(filterStudent.split('')[1]) && filt.firstName.toLowerCase().includes(filterStudent.split('')[2]) && filterStudent.length === 3) {
                     return filt
-                } else if (filt.firstName.includes(filterStudent.split('')[0]) && filt.firstName.includes(filterStudent.split('')[1]) && filt.firstName.includes(filterStudent.split('')[2]) && filt.firstName.includes(filterStudent.split('')[3]) && filterStudent.length === 4) {
+                } else if (filt.firstName.toLowerCase().includes(filterStudent.split('')[0]) && filt.firstName.toLowerCase().includes(filterStudent.split('')[1]) && filt.firstName.toLowerCase().includes(filterStudent.split('')[2]) && filt.firstName.toLowerCase().includes(filterStudent.split('')[3]) && filterStudent.length === 4) {
                     return filt
-                } else if (filt.firstName.includes(filterStudent.split('')[0]) && filt.firstName.includes(filterStudent.split('')[1]) && filt.firstName.includes(filterStudent.split('')[2]) && filt.firstName.includes(filterStudent.split('')[3]) && filt.firstName.includes(filterStudent.split('')[4]) && filterStudent.length === 5) {
+                } else if (filt.firstName.toLowerCase().includes(filterStudent.split('')[0]) && filt.firstName.toLowerCase().includes(filterStudent.split('')[1]) && filt.firstName.toLowerCase().includes(filterStudent.split('')[2]) && filt.firstName.toLowerCase().includes(filterStudent.split('')[3]) && filt.firstName.toLowerCase().includes(filterStudent.split('')[4]) && filterStudent.length === 5) {
                     return filt
-                } else if (filt.firstName.includes(filterStudent.split('')[0]) && filt.firstName.includes(filterStudent.split('')[1]) && filt.firstName.includes(filterStudent.split('')[2]) && filt.firstName.includes(filterStudent.split('')[3]) && filt.firstName.includes(filterStudent.split('')[4]) && filt.firstName.includes(filterStudent.split('')[5]) && filterStudent.length === 6) {
+                } else if (filt.firstName.toLowerCase().includes(filterStudent.split('')[0]) && filt.firstName.toLowerCase().includes(filterStudent.split('')[1]) && filt.firstName.toLowerCase().includes(filterStudent.split('')[2]) && filt.firstName.toLowerCase().includes(filterStudent.split('')[3]) && filt.firstName.toLowerCase().includes(filterStudent.split('')[4]) && filt.firstName.toLowerCase().includes(filterStudent.split('')[5]) && filterStudent.length === 6) {
                     return filt
-                } else if (filt.firstName.includes(filterStudent.split('')[0]) && filt.firstName.includes(filterStudent.split('')[1]) && filt.firstName.includes(filterStudent.split('')[2]) && filt.firstName.includes(filterStudent.split('')[3]) && filt.firstName.includes(filterStudent.split('')[4]) && filt.firstName.includes(filterStudent.split('')[5]) && filt.firstName.includes(filterStudent.split('')[6])) {
+                } else if (filt.firstName.toLowerCase().includes(filterStudent.split('')[0]) && filt.firstName.toLowerCase().includes(filterStudent.split('')[1]) && filt.firstName.toLowerCase().includes(filterStudent.split('')[2]) && filt.firstName.toLowerCase().includes(filterStudent.split('')[3]) && filt.firstName.toLowerCase().includes(filterStudent.split('')[4]) && filt.firstName.toLowerCase().includes(filterStudent.split('')[5]) && filt.firstName.toLowerCase().includes(filterStudent.split('')[6])) {
                     return filt
-                } else if (filt.firstName.includes(filterStudent.split('')[0]) && filt.firstName.includes(filterStudent.split('')[1]) && filt.firstName.includes(filterStudent.split('')[2]) && filt.firstName.includes(filterStudent.split('')[3]) && filt.firstName.includes(filterStudent.split('')[4]) && filt.firstName.includes(filterStudent.split('')[5]) && filt.firstName.includes(filterStudent.split('')[6]) && filt.firstName.includes(filterStudent.split('')[7])) {
+                } else if (filt.firstName.toLowerCase().includes(filterStudent.split('')[0]) && filt.firstName.toLowerCase().includes(filterStudent.split('')[1]) && filt.firstName.toLowerCase().includes(filterStudent.split('')[2]) && filt.firstName.toLowerCase().includes(filterStudent.split('')[3]) && filt.firstName.toLowerCase().includes(filterStudent.split('')[4]) && filt.firstName.toLowerCase().includes(filterStudent.split('')[5]) && filt.firstName.toLowerCase().includes(filterStudent.split('')[6]) && filt.firstName.toLowerCase().includes(filterStudent.split('')[7])) {
                     return filt
                 } else if (filterStudent === '') {
                     return filt

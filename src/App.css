@@ -362,13 +362,13 @@ body {
 /* @dim : 60px; */
 
 .spinner {
-   height:120px;
-   width:120px;
+   height:60px;
+   width:60px;
    margin:0 auto;
    position:relative;
   position: absolute;
-  top:30%;
-  left:42%;
+  top:50%;
+  left:50%;
   margin: -(60px/2) 0 0 -(60px/2);
    -webkit-animation: rotation 1s infinite linear;
    -moz-animation: rotation 1s infinite linear;

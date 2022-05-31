@@ -50,7 +50,7 @@ if(showDelete) {
 }
 
 if(loading) {
-  return <div class="spinner"></div>
+  return <div className="spinner"></div>
 } else {
 
   

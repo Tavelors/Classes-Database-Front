@@ -73,7 +73,7 @@ const [deleteId, setDeleteId] = useState('')
 </tr>
 </thead>
         {studentLesson.map((list, index) => {
-            
+            console.log(list);
            let actualDate;
             if(list.colorChange) {
             normalPost = {background: '#ffa0fb'}

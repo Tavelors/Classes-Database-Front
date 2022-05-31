@@ -1,6 +1,6 @@
 import React, {useEffect, useState}from 'react'
 import DatePicker from 'react-datepicker'
-import {AbsenceDatePick, postAbsenceClass, updatePresence, updateStudentBankAndPresence} from '../../utils/api'
+import {AbsenceDatePick, postAbsenceClass, updateDate, updateStudentBankAndPresence} from '../../utils/api'
 import "react-datepicker/dist/react-datepicker.css";
 import styled from 'styled-components'
 const AbsenceDate = ({class_id, setStudentLesson, student_id, firstName, lastName, class_number}) => {
@@ -16,11 +16,13 @@ const AbsenceDate = ({class_id, setStudentLesson, student_id, firstName, lastNam
     // const noteLog =
     // logNote.substring(0, 43) +
     // logNote.substring(logNote.length - 14, logNote.length);
-   const curr = await  AbsenceDatePick(class_id, startDate, logNote)
+   const curr = await  AbsenceDatePick(class_id, startDate, startDate, logNote)
+
        
 
      const secondCurr = await AbsenceDatePick(post.class._id, curr.AbsenceDate)
      updateStudentBankAndPresence(student_id, -1, 1)
+     await updateDate(post.class._id, startDate, logNote)
           
          setStudentLesson((setDate) => {
             let newDate = [...setDate]

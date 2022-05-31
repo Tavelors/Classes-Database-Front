@@ -4,9 +4,9 @@ axios.interceptors.request.use((config) => {
   config.headers.authorization = `Bearer ${token}`;
   return config;
 });
-const otherURL = `https://class-schedules-data.herokuapp.com/api/`;
+const otherURL = `http://localhost:5800/api`;
 const originalURL = axios.create({
-  baseURL: "https://class-schedules-data.herokuapp.com/api/",
+  baseURL: "http://localhost:5800/api",
 });
 
 export const getUser = async () => {
