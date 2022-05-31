@@ -43,6 +43,10 @@ console.log(typeof local_user_id);
 },[local_user_id, navigate, token])
   return (
     <StyledDiv  className='form-style-6'>
+
+      <h3>Login using:</h3>
+      <h4>test@email.com</h4>
+      <h4>password</h4>
         {/* <Link to='/register' >Register</Link> */}
     
     <form onSubmit={loginUser}>
