@@ -29,8 +29,19 @@ const PutRescheduledFalse = ({class_id, setPutRescheduled, setStudentLesson}) =>
 const Button = styled.button/*css*/`
 height:40px;
 width: 40px;
+transition:0.2s 0.2s;
 &:hover {
-    transform: scale(1.1);
+  transform: scale(1.1);
+  transition:0.2s 0s;
+  
+}
+:active {
+background-color: #72b340;
+// box-shadow: 5px 5px #666;
+// transform: translateY(4px);
+transform: scale(1);
+transition:0s 0s;
+
 }
 `
 

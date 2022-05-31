@@ -13,9 +13,15 @@ console.log(date);
       setStartDate(date)
 
       setPay((post) => {
-  let newDate = [...post]
-        newDate.splice(0,1,curr)
-  return newDate
+        let newDate = [...post]
+        for (let i = 0; i < newDate.length; i++) {
+          if(curr._id === newDate[i]._id) {
+              newDate.splice(i,1,curr)
+            }
+          }
+          // console.log(curr);
+          // console.log(newDate);
+          return newDate
 })
     })
  }
@@ -25,7 +31,8 @@ console.log(date);
 <DateStyle>
 
 
-    <DatePicker className="datepicker"  placeholderText="Select Date" onChange={changeDate} />
+    <DatePicker className="datepicker"  placeholderText="Select Date" onChange={changeDate}
+    showMonthYearPicker />
 
 </DateStyle>
     )
@@ -44,9 +51,19 @@ z-index: 2;
   font-color
   padding:0px;
   border:2px solid black;
+  transition:0.2s 0.2s;
   &:hover {
-    transform: scale(1.3);
-  }
+    transform: scale(1.1);
+    transition:0.2s 0s;
+    
+}
+:active {
+  background-color: #72b340;
+  // box-shadow: 5px 5px #666;
+  // transform: translateY(4px);
+  transform: scale(1);
+  transition:0s 0s;
+  
 }
 `
 

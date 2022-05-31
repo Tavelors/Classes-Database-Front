@@ -4,9 +4,9 @@ axios.interceptors.request.use((config) => {
   config.headers.authorization = `Bearer ${token}`;
   return config;
 });
-const otherURL = `http://localhost:5000/api`;
+const otherURL = `http://localhost:5800/api`;
 const originalURL = axios.create({
-  baseURL: "http://localhost:5000/api",
+  baseURL: "http://localhost:5800/api",
 });
 
 export const getUser = async () => {
@@ -26,8 +26,10 @@ export const getStudents = async () => {
   return data;
 };
 
-export const postClass = async (student_id) => {
-  const { data } = await axios.post(`${otherURL}/class/${student_id}`);
+export const postClass = async (student_id, logNote) => {
+  const { data } = await axios.post(`${otherURL}/class/${student_id}`, {
+    logNote,
+  });
   return data;
 };
 
@@ -72,33 +74,39 @@ export const updatePresence = async (
   rescheduledBool,
   rescheduledPresenceBool,
   absenceBool,
-  class_id
+  class_id,
+  logNote
 ) => {
   const { data } = await axios.put(`${otherURL}/class/update/${class_id}`, {
     presence: presenceBool,
     rescheduled: rescheduledBool,
     rescheduledPresence: rescheduledPresenceBool,
     absence: absenceBool,
+    logNote: logNote,
   });
   return data;
 };
 
-export const deleteClass = async (class_id) => {
-  const { data } = await axios.delete(`${otherURL}/class/delete/${class_id}`);
+export const deleteClass = async (class_id, logNote) => {
+  const { data } = await axios.delete(`${otherURL}/class/delete/${class_id}`, {
+    logNote: logNote,
+  });
   return data;
 };
 
-export const updateDate = async (class_id, classDate) => {
+export const updateDate = async (class_id, classDate, logNote) => {
   const { data } = await axios.put(`${otherURL}/class/update/${class_id}`, {
     classDate: classDate,
+    logNote: logNote,
   });
 
   return data;
 };
 
-export const AbsenceDatePick = async (class_id, AbsenceDate) => {
+export const AbsenceDatePick = async (class_id, AbsenceDate, logNote) => {
   const { data } = await axios.put(`${otherURL}/class/update/${class_id}`, {
     AbsenceDate: AbsenceDate,
+    logNote: logNote,
   });
 
   return data;
@@ -173,7 +181,7 @@ export const updateLock = async (class_id, lockBool) => {
   return data;
 };
 
-export const updatePaymentType = async (pay_id, lockBool) => {
+export const updatePaymentType = async (pay_id, lockBool, logNote) => {
   const { data } = await axios.put(`${otherURL}/pay/update/${pay_id}`, {
     lockButton: lockBool,
   });
@@ -187,9 +195,10 @@ export const updatePaymentDate = async (pay_id, paymentDate) => {
   return data;
 };
 
-export const updatePaymentPaid = async (pay_id, paidBool) => {
+export const updatePaymentPaid = async (pay_id, paidBool, logNote) => {
   const { data } = await axios.put(`${otherURL}/pay/update/${pay_id}`, {
     paid: paidBool,
+    logNote: logNote,
   });
   return data;
 };
@@ -205,5 +214,79 @@ export const putPaymentType = async (pay_id, paymentTypeBool) => {
   const { data } = await axios.put(`${otherURL}/pay/update/${pay_id}`, {
     paymentType: paymentTypeBool,
   });
+  return data;
+};
+
+// export const putConcludedType = async (pay_id, concluded) => {
+//   const { data } = await axios.put(`${otherURL}/pay/update/${pay_id}`, {
+//     concluded: concluded,
+//   });
+//   return data;
+// };
+
+export const postNewPayment = async (student_id) => {
+  const { data } = await axios.post(`${otherURL}/pay/create/${student_id}`);
+  return data;
+};
+
+export const updateConcluded = async (student_id, concludedBool, logNote) => {
+  const { data } = await axios.put(
+    `${otherURL}/students/update/${student_id}`,
+    {
+      concluded: concludedBool,
+      logNote: logNote,
+    }
+  );
+  return data;
+};
+
+export const getLogs = async () => {
+  const { data } = await axios.get(`${otherURL}/log/`);
+  return data;
+};
+
+export const getTodays = async () => {
+  const { data } = await axios.get(`${otherURL}/class/recent`);
+  return data;
+};
+
+export const postTenClass = async (student_id) => {
+  const { data } = await axios.post(`${otherURL}/class/ten/${student_id}`);
+  return data;
+};
+
+export const getSortedStudents = async (query) => {
+  console.log(query);
+  const { data } = await axios.get(
+    `${otherURL}/students/sortstudents/?sort_by=${query}`,
+    {
+      hi: "hi",
+    }
+  );
+  return data;
+};
+
+export const postLog = async (logNote) => {
+  const { data } = await axios.post(`${otherURL}/log/`, {
+    logNote: logNote,
+  });
+  return data;
+};
+
+export const updateNotes = async (class_id, description, logNote) => {
+  const { data } = await axios.put(`${otherURL}/class/update/${class_id}`, {
+    description: description,
+    logNote: logNote,
+  });
+  return data;
+};
+
+export const getClassById = async (class_id) => {
+  const { data } = await axios.get(`${otherURL}/class/singleclass/${class_id}`);
+  return data;
+};
+
+export const deleteStudent = async (student_id) => {
+  const { data } = await axios.delete(`${otherURL}/students/${student_id}`);
   return data;
 };

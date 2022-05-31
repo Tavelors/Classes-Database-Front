@@ -8,21 +8,25 @@ import styled from 'styled-components'
 
 const CreateClass = ({firstName, lastName, student_id, trigger, setTrigger, createClassButton, SetCreateClassButton, setStudentLesson}) => {
 
-      const HandleClick = () => {
-
+const logNote = `Student: ${firstName}, Class Created`
+      const HandleClick = (e) => {
+          e.preventDefault();
         setTrigger(false)
         if(createClassButton) {
           
-          postClass(student_id).then((post) => {
-            
-            setStudentLesson(curr => [...curr, post])
+          postClass(student_id, logNote).then((post) => {
+            console.log(post);
+            setStudentLesson(curr => [post.class, ...curr])
               
             SetCreateClassButton(false)
           })
         }
-        window.location.reload(false);
+        // window.location.reload(true);
       }
-    
+    let stuff = 0
+    if(stuff < 5) {
+      stuff++
+    }
     
 return (trigger) ? (
     <PopupStyle>
@@ -32,13 +36,16 @@ return (trigger) ? (
             <h2 className="popup-message" >Class Created!</h2>
            
            
-            <button onClick={HandleClick} className="popup-button">close</button>
+            <Button onClick={HandleClick} className="popup-button">close</Button>
         </div>
     </div>
     </PopupStyle>
 ) : '';
   
 }
+const Button = styled.button/*css*/`
+
+`
 
 const PopupStyle = styled.div/*css*/`
 .popup {
@@ -47,37 +54,51 @@ const PopupStyle = styled.div/*css*/`
    left: 0;
    width: 100%;
    height: 100vh;
-   background-color: rgba(0,0,0, 0.2);
+   background-color: rgba(0,0,0, 0.4);
 
    display: flex;
    justify-content: center;
    align-items: center;
- 
+   z-index: 100;
   }
   
   .popup-button {
     background-color: #90b4e8;
-    color: #398CDA;
+    color: black;
     font-size: 2rem;
     display: inline-block;
     outline: none;
-    border: none;
+    border: 2px solid black;
     padding: 1rem 4rem;
-    border-radius: 8px;
+    background-color: #72b3d0;
+    transition:0.2s 0.2s;
+    &:hover {
+      transform: scale(1.1);
+      transition:0.2s 0s;
+      
+  }
+  :active {
+    background-color: #72b340;
+    // box-shadow: 5px 5px #666;
+    // transform: translateY(4px);
+    transform: scale(1);
+    transition:0s 0s;
+    
+  }
     cursor: pointer;
-  
+    z-index: 100;
   }
   .inner-popup {
       z-index: 100;
  position: fixed;
  padding: 32px;
  width: 100%;
- max-width: 640px;
- background-color: #c2d3f2;
- border-radius: 10px;
+ max-width: 300px;
+ background-color: #72b3d0;
+ border: 4px solid black;
   }
   .popup-message {
-    color: #398CDA
+    color: black;
   }
 `
 

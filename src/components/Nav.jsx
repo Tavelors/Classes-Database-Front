@@ -1,8 +1,9 @@
 import React from 'react'
-import {NavLink} from 'react-router-dom'
+import {NavLink, useNavigate} from 'react-router-dom'
 import styled from 'styled-components'
 import {MdMenu, MdClose} from 'react-icons/md'
 import {useState} from 'react'
+import Logout from './Logout'
 const NavStyles = styled.nav/*css*/`
 
 //   position: fixed;
@@ -13,6 +14,7 @@ const NavStyles = styled.nav/*css*/`
   padding: 1rem 0;
 //   background: #c2d3f2;
   ul {
+    
     max-width: 1200px;
     margin: 0 auto;
     width: 90%;
@@ -21,24 +23,27 @@ const NavStyles = styled.nav/*css*/`
       display: inline-block;
       border-radius: 8px;
       transition: 0.3s ease background-color;
-      &:hover {
-        background-color: #90b4e8;
+      // &:hover {
+      //   background-color: #90b4e8;
       
-      }
+      // }
     }
     a {
-      display: inline-block;
-      font-family: 'RobotoMono Regular';
-      padding: 1rem 2rem;
-      font-size: 1.3rem;
-      color: #90b4e8;
-      outline: none;
-      &:hover {
-        color: #398CDA ;
+      // display: inline-block;
+      // font-family: 'RobotoMono Regular';
+      // padding: 1rem 2rem;
+      // font-size: 1.3rem;
+      // color: #90b4e8;
+      // outline: none;
+      // &:hover {
+      //   color: #398CDA ;
       }
     }
     .active {
       color: #398CDA;
+    }
+    .navItems {
+      padding-left: 0px;
     }
   }
   .mobile-menu-icon {
@@ -57,6 +62,37 @@ const NavStyles = styled.nav/*css*/`
   .navItems .closeNavIcon {
     display: none;
     color: #398CDA;
+  }
+  button {
+    // display: inline-block;
+    // font-family: 'RobotoMono Regular';
+    // padding: 1rem 2rem;
+    // font-size: 1.3rem;
+    // color: #90b4e8;
+    // outline: none;
+    color: black;
+  font-weight: bold;
+  margin: 5px;
+  margin-bottom:20px;
+  width: 120px;
+  height: 50px;
+  font-size: 15px;
+  background-color: #72b3d0;
+  transition:0.2s 0.2s;
+  &:hover {
+    transform: scale(1.1);
+    transition:0.2s 0s;
+    
+}
+:active {
+  background-color: #72b340;
+  // box-shadow: 5px 5px #666;
+  // transform: translateY(4px);
+  transform: scale(1);
+  transition:0s 0s;
+  
+}
+
   }
   // @media only screen and (max-width: 600px) {
   //   padding: 0;
@@ -95,9 +131,18 @@ const NavStyles = styled.nav/*css*/`
 `;
 
 const Nav = () => {
+  const navigate = useNavigate()
     const [showNav, setShowNav] = useState(false)
-  return (
-    <NavStyles>
+    const currentURL = window.location.pathname
+    console.log(currentURL);
+    const token = localStorage.getItem("alphstains-secret-user-token");
+    if(!token) {
+        return ''
+    }
+    if (currentURL.includes('/students') || currentURL.includes('/logs') || currentURL.includes('/today') || currentURL.includes('/notes') || currentURL.includes('/payments')) {
+  
+      return (
+        <NavStyles>
         <div className="mobile-menu-icon" 
         
         onClick={() => setShowNav(!showNav)}
@@ -118,37 +163,41 @@ const Nav = () => {
                 <MdClose />
             </div>
             <li>
+                
+                 <Logout />
+            </li>
+            <li>
                 <NavLink 
-            to='/home' 
+                to='/today'
+               
+                onClick={() => setShowNav(!showNav)}
+                role='button'
+                onKeyDown={() => setShowNav(!showNav)}
+                tabIndex={0}
+                ><button>Today</button></NavLink>
+            </li>
+            <li>
+                <NavLink 
+                to='/students'
+                
+                onClick={() => setShowNav(!showNav)}
+                role='button'
+                onKeyDown={() => setShowNav(!showNav)}
+                tabIndex={0}
+                ><button>Students</button></NavLink>
+            </li>
+            <li>
+                <NavLink 
+            to='/logs' 
             exact='true' 
             
             onClick={() => setShowNav(!showNav)}
             role='button'
             onKeyDown={() => setShowNav(!showNav)}
             tabIndex={0} >
-                Home
+                <button>Logs</button>
                 </NavLink>
             </li>
-            <li>
-                <NavLink 
-                to='/home/students'
-               
-                onClick={() => setShowNav(!showNav)}
-                role='button'
-                onKeyDown={() => setShowNav(!showNav)}
-                tabIndex={0}
-                >Students</NavLink>
-            </li>
-            {/* <li>
-                <NavLink
-                 to='/home/payments'
-                
-                 onClick={() => setShowNav(!showNav)}
-                 role='button'
-                 onKeyDown={() => setShowNav(!showNav)}
-                 tabIndex={0}
-                 >Payments</NavLink>
-            </li> */}
             {/* <li>
                 <NavLink 
                 to='/home/tickets'
@@ -163,6 +212,9 @@ const Nav = () => {
         </ul>
     </NavStyles>
   )
+            } else {
+              return ''
+            }
 }
 
 export default Nav

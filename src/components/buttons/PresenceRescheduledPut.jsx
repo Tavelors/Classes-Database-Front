@@ -1,16 +1,17 @@
 import React, {useEffect, useState}from 'react'
-import {updatePresence, updateStudentBankAndPresence} from '../../utils/api'
+import {updatePresence} from '../../utils/api'
 import styled from 'styled-components'
 
-const RescheduledAbsence = ({index, list, class_id, setPutRescheduledPresence, setStudentLesson, student_id, class_number, firstName}) => {
+const PresenceRescheduledPut = ({index, list, class_id, setStudentLesson, class_number, firstName}) => {
     // const [putPresence, setPutPresence] = useState(false)
-    const logNote = `Student: ${firstName}, Class: ${class_number}, Rescheduled Class Absence set to true`
+    const logNote = `Student: ${firstName}, Class: ${class_number}, Rescheduled Class Presence set to true`
     const presenceClick = (e) => {
         e.preventDefault();
-        setPutRescheduledPresence(false)
+        // setPutRescheduled(false)
         setStudentLesson((curr) => {
             let newList = [...curr]
-            list.absence = true
+             list.presence = true
+             list.rescheduledPresence = true
             newList.splice(index,1,list)
             
             
@@ -18,17 +19,17 @@ const RescheduledAbsence = ({index, list, class_id, setPutRescheduledPresence, s
             return newList
         })  
         
+        updatePresence(true, false, true, false, class_id, logNote)
         
-        updatePresence(false, false, false, true, class_id, logNote)
-        updateStudentBankAndPresence(student_id, 2, -1)
     }
 // console.log(putPresence);
-  return <Button style={{background: 'red'}} onClick={presenceClick} >❌</Button>
+  return <Button style={{background: 'red'}} onClick={presenceClick} >✔️</Button>
 }
 
 const Button = styled.button/*css*/`
 height:40px;
 width: 40px;
+font-size: 20px;
 transition:0.2s 0.2s;
 &:hover {
   transform: scale(1.1);
@@ -45,6 +46,4 @@ transition:0s 0s;
 }
 `
 
-
-export default RescheduledAbsence
-
+export default PresenceRescheduledPut

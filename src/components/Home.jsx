@@ -12,7 +12,7 @@ const [button, setButton] = useState([])
 useEffect(() => {
 
     if(currentURL === '/') {
-        navigate('/home')
+        navigate('/login')
     }
     },[currentURL, navigate])
 
@@ -47,7 +47,7 @@ console.log(button);
 
   return (
     <header>
-          {logoutButton}
+          
       <div>
 <span>
 
@@ -55,10 +55,10 @@ console.log(button);
       <span>
     
 </span>
-      {registerButton} 
+      
       
       <span>
-      {homeButton}
+      
 </span>
       
 </span>

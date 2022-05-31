@@ -1,16 +1,17 @@
 import React, {useEffect, useState, useCallback}from 'react'
-import {deleteClass} from '../../utils/api'
+import {deleteClass, postLog} from '../../utils/api'
 import styled from 'styled-components'
-const DeleteClass = ({class_id, setStudentLesson, deletePopup, setDeletePopup}) => {
+const DeleteClass = ({class_id, setStudentLesson, deletePopup, setDeletePopup, deleteId, class_number, firstName }) => {
 
-  const cancelDelete = () => {
-    setDeletePopup(false)
-  }
+
+
 
   
-    const deleteButton = (e) => { 
-      setDeletePopup(false)
-        deleteClass(class_id).then((post) => {
+const deleteButton = (e) => { 
+  e.preventDefault()
+  setDeletePopup(false)
+        const logNote = `Student: ${firstName}, Class: ${class_number}, Class Deleted`
+         
           setStudentLesson((curr) => {
             let newList = []
             for (let i = 0; i < curr.length; i++) {
@@ -21,9 +22,13 @@ const DeleteClass = ({class_id, setStudentLesson, deletePopup, setDeletePopup}) 
             }
             return newList
           })
-        })  
+          postLog(logNote)
+          deleteClass(class_id)
     }
-
+    const cancelDelete = () => {
+      setDeletePopup(false)
+    
+    }
   return (deletePopup) ? (
 <PopupStyle>
 
@@ -33,16 +38,35 @@ const DeleteClass = ({class_id, setStudentLesson, deletePopup, setDeletePopup}) 
         <h2 className="popup-message" >Are you sure you want to delete this</h2>
        
        
-        <button onClick={deleteButton} className="popup-button" >Yes</button>
+        
     </div>
 </div>
 </PopupStyle>
 
-    ) : '';
+    ) :<Button onClick={deleteButton} className="popup-button" >🗑️</Button>;
    
 }
 
-
+const Button = styled.button/*css*/`
+background-color: red;
+    height:40px;
+    width: 40px;
+    font-size: 20px;
+    transition:2s 0.2s;
+    &:hover {
+      transform: scale(1.1);
+      transition:2s 0s;
+      
+  }
+  :active {
+    background-color: #72b340;
+    // box-shadow: 5px 5px #666;
+    // transform: translateY(4px);
+    transform: scale(1);
+    transition:0s 0s;
+    
+  }
+`
 const PopupStyle = styled.div/*css*/`
 .popup {
    position: fixed;
@@ -58,6 +82,15 @@ const PopupStyle = styled.div/*css*/`
  
   }
   
+  .delete-button {
+    background-color: red;
+    height:40px;
+    width: 40px;
+    font-size: 20px;
+    &:hover {
+        transform: scale(1.1);
+    }
+
   .popup-button {
     background-color: #90b4e8;
     color: #398CDA;

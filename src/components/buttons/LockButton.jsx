@@ -1,23 +1,22 @@
 import React from 'react'
 import styled from 'styled-components'
 import {updateLock} from '../../utils/api'
-const LockButton = ({class_id, setStudentLesson}) => {
+const LockButton = ({index, list, class_id, setStudentLesson}) => {
 
 
 const handleClick = async (e) => {
     
-   const lockButton = await updateLock(class_id, true)
-
-   setStudentLesson((curr) => {
-    let newList = [...curr]
-    for (let i = 0; i < newList.length; i++) {
-      if(lockButton._id === newList[i]._id) {
-          newList.splice(i,1,lockButton)
-      }
-      
-    }
-    return newList
-  })  
+    
+    setStudentLesson((curr) => {
+        let newList = [...curr]
+        list.lockButton = true
+        newList.splice(index,1,list)
+        
+        
+        
+        return newList
+    })  
+    await updateLock(class_id, true)
 }
 
 
@@ -26,8 +25,19 @@ const handleClick = async (e) => {
 }
 const Button = styled.button/*css*/`
 background-color: green;
+transition:0.2s 0.2s;
 &:hover {
-    transform: scale(1.1);
+  transform: scale(1.1);
+  transition:0.2s 0s;
+  
+}
+:active {
+background-color: #72b340;
+// box-shadow: 5px 5px #666;
+// transform: translateY(4px);
+transform: scale(1);
+transition:0s 0s;
+
 }
 `
 

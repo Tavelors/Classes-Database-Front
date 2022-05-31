@@ -1,23 +1,22 @@
 import React from 'react'
 import styled from 'styled-components'
 import {updateLock} from '../../utils/api'
-const UnlockButton = ({class_id, setStudentLesson}) => {
+const UnlockButton = ({index, list, class_id, setStudentLesson}) => {
 
 
 const handleClick = async (e) => {
     
- const unlockButton = await updateLock(class_id, false)
-console.log(unlockButton);
+   
     setStudentLesson((curr) => {
-    let newList = [...curr]
-    for (let i = 0; i < newList.length; i++) {
-      if(unlockButton._id === newList[i]._id) {
-          newList.splice(i,1,unlockButton)
-      }
-      
-    }
-    return newList
-  })  
+        let newList = [...curr]
+        list.lockButton = false
+        newList.splice(index,1,list)
+        
+        
+        
+        return newList
+    })  
+    await updateLock(class_id, false)
 
 }
 

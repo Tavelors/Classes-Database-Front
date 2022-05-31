@@ -7,7 +7,7 @@ const Logout = ({local_user_id}) => {
     }
     const logoutUser = () => {
         // setCurrentUser('')
-            alert('Logged Out')
+            
             localStorage.removeItem('alphstains-secret-user-token')
             localStorage.removeItem('alphstains-secret-user-id')
         // window.location.reload(false);

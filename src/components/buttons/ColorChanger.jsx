@@ -1,37 +1,33 @@
 import React from 'react'
 import {updateColor} from '../../utils/api'
 import styled from 'styled-components'
-const ColorChanger = ({index, class_id, colorChange, setStudentLesson}) => {
+const ColorChanger = ({classNum,  list,index, class_id, colorChange, setStudentLesson}) => {
 
 
 
     const handleClick = async () => {
-        let color;
+        
         if (colorChange) {
-            color = await updateColor(false, class_id)
           
-            setStudentLesson((curr) => {
-                let newList = [...curr]
-                for (let i = 0; i < newList.length; i++) {
-                  if(color._id === newList[i]._id) {
-                      newList.splice(i,1,color)
-                  }
-                  
-                }
-                return newList
-              })
+          setStudentLesson((curr) => {
+            let newList = [...curr]
+            list.colorChange = false
+            newList.splice(classNum,1,list)
+            
+            
+            
+            return newList
+          })
+          await updateColor(false, class_id)
         } else {
-            color = await updateColor(true, class_id)
-            setStudentLesson((curr) => {
-                let newList = [...curr]
-                for (let i = 0; i < newList.length; i++) {
-                  if(color._id === newList[i]._id) {
-                      newList.splice(i,1,color)
-                  }
-                  
-                }
-                return newList
-              })
+          setStudentLesson((curr) => {
+            let newList = [...curr]
+          list.colorChange = true
+                newList.splice(classNum,1,list)
+              
+            return newList
+          })
+          await updateColor(true, class_id)
         }
     }
  
@@ -45,8 +41,18 @@ const ColorChanger = ({index, class_id, colorChange, setStudentLesson}) => {
 
 const Button = styled.button/*css*/`
 background-color: #ffa0fb;
+transition:0.2s 0.2s;
 &:hover {
-    transform: scale(1.1);
+  transform: scale(1.1);
+  transition:0.2s 0s;
+  
+}
+:active {
+background-color: #72b340;
+// box-shadow: 5px 5px #666;
+// transform: translateY(4px);
+transform: scale(1);
+transition:0s 0s;
 
 }
 `
