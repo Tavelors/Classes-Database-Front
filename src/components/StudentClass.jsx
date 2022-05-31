@@ -135,10 +135,17 @@ if(!token) {
          <Moment className='date-format' format='LL' >{list.classDate}</Moment><div>
         <Moment className='date-format' format='LT' >{list.classDate}</Moment></div></TD>
         }
-        if(list.AbsenceDate === undefined) {
+        if (list.lockButton && list.AbsenceDate === undefined) {
+           actualAbsenceDate = <TD style={absencePost} >
+               <div>Please Choose</div>
+                <div>a Date</div>
+           </TD>
+       } else if(list.AbsenceDate === undefined) {
             actualAbsenceDate = <TD style={absencePost} ><AbsenceDate class_id={list._id} setStudentLesson={setStudentLesson} student_id={student_id} firstName={list.firstName} lastName={list.lastName} class_number={list.classNumber} />
             <div>Please Choose</div>
                 <div>a Date</div></TD>
+        } else if(list.lockButton) {
+            actualAbsenceDate = <TD style={absencePost} ><Moment className='date-format' format='LL' >{list.AbsenceDate}</Moment><div><Moment className='date-format' format='LT' >{list.AbsenceDate}</Moment></div></TD>
         } else {
             actualAbsenceDate = <TD style={absencePost} ><AbsenceDate class_id={list._id} setStudentLesson={setStudentLesson} student_id={student_id} firstName={list.firstName} lastName={list.lastName} class_number={list.classNumber} /><Moment className='date-format' format='LL' >{list.AbsenceDate}</Moment><div><Moment className='date-format' format='LT' >{list.AbsenceDate}</Moment></div></TD>
         }
@@ -270,7 +277,7 @@ if(!token) {
 <td style={rescheduledPresence} ><Link to={`/notes/${list._id}`}  ><Button></Button></Link></td>
 {/* <td style={rescheduledPresence} ></td> */}
 {/* <td style={rescheduledPresence} > <Link to={`/home/payment/${list._id}`}   ><button className='paymentButton' >&nbsp;</button ></Link></td> */}
-<td style={rescheduledPresence} ><DeleteClass class_id={list._id}  setStudentLesson={setStudentLesson}  deletePopup={deletePopup}  setDeletePopup={setDeletePopup}  class_number={list.classNumber} firstName={list.firstName}  /></td>
+<td style={rescheduledPresence} >{showDeleteButtons}</td>
 </tr>
 </tbody>
                    ) } else if (list.rescheduledPresence && !list.presence && list.lockButton) { return (
