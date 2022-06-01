@@ -31,8 +31,8 @@ git clone https://github.com/vbrooke78/OddJobs-Frontend.git
 ```
 
 To install dependencies
-...
+```
 npm install
-...
+```
 npm start
-...
+```
