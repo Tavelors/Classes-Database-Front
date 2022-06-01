@@ -34,5 +34,6 @@ To install dependencies
 ```
 npm install
 ```
+```
 npm start
 ```
