@@ -4,11 +4,9 @@ axios.interceptors.request.use((config) => {
   config.headers.authorization = `Bearer ${token}`;
   return config;
 });
-// https://schedule-everytim.herokuapp.com/api
-// http://localhost:5800/api
-const otherURL = `https://schedule-everytim.herokuapp.com/api`;
+const otherURL = `https://class-schedules-data.herokuapp.com/api`;
 const originalURL = axios.create({
-  baseURL: "https://schedule-everytim.herokuapp.com/api",
+  baseURL: "https://class-schedules-data.herokuapp.com/api",
 });
 
 export const getUser = async () => {
