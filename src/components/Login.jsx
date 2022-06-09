@@ -17,9 +17,9 @@ const Login = ({local_user_id}) => {
         e.preventDefault()
      const data = await userLogin(email, password)
      
-console.log(data);
+
 if(data) {
-    // setCurrentUser(data.user_id)
+  
     if(data.token) localStorage.setItem('alphstains-secret-user-token', data.token);
     
     localStorage.setItem('alphstains-secret-user-id', data.user_id)
@@ -31,19 +31,19 @@ if(data) {
 }
 }
 useEffect(() => {
-console.log(typeof local_user_id);
-// window.location.reload(false);
+
+
     if(local_user_id && !token && typeof local_user_id !== 'object' ) {
         window.location.reload(false);
         navigate(`/students`)
     } else if (!local_user_id) {
-        // window.location.reload(false);
+    
         navigate('/login')
     }
 },[local_user_id, navigate, token])
   return (
     <StyledDiv  className='form-style-6'>
-        {/* <Link to='/register' >Register</Link> */}
+   
     
     <form onSubmit={loginUser}>
         <input 

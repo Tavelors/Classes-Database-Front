@@ -27,7 +27,7 @@ const [showFormSubmit, setShowFormSubmit] = useState(false)
         
     ]
     
-// console.log({[});
+
     const handleSort = (e) => {
             e.preventDefault()
 let querys = [firstSelect,secondSelect,thirdSelect]
@@ -36,7 +36,7 @@ let querys = [firstSelect,secondSelect,thirdSelect]
             setStudents(list)
         })
     }
-    console.log(showFormSubmit);
+   
 if(!showFormSubmit) {
     return (
         <div>

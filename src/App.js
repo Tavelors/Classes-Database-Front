@@ -3,14 +3,11 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./components/Login";
 import Logout from "./components/Logout";
 import Home from "./components/Home";
-import Students from "./components/Students";
+import StudentsPage from "./components/StudentsPage";
 import Student from "./components/Student";
-import Payments from "./components/Payments";
-import AllPayments from "./components/AllPayments";
-import Tickets from "./components/Tickets";
-import ClassPayment from "./components/ClassPayment";
+import PaymentPage from "./components/PaymentPage";
 import Logs from "./components/Logs";
-import UpcomingClass from "./components/UpcomingClass";
+import Today from "./components/Today";
 import Notes from "./components/buttons/Notes";
 import Nav from "./components/Nav";
 import { useState } from "react";
@@ -33,14 +30,14 @@ function App() {
             path="/login"
             element={<Login local_user_id={local_user_id} token={token} />}
           />
-          <Route path="/students" element={<Students />} />
+          <Route path="/students" element={<StudentsPage />} />
           <Route path="/students/:student_id" element={<Student />} />
-          <Route path="/payments/:student_id/" element={<Payments />} />
+          <Route path="/payments/:student_id/" element={<PaymentPage />} />
           {/* <Route path="/home/payments" element={<AllPayments />} />
           <Route path="/home/tickets" element={<Tickets />} />
           <Route path="/home/payment/:class_id" element={<ClassPayment />} /> */}
           <Route path="/logs" element={<Logs />} />
-          <Route path="/today" element={<UpcomingClass />} />
+          <Route path="/today" element={<Today />} />
           <Route path="/notes/:class_id" element={<Notes />} />
         </Routes>
       </Router>

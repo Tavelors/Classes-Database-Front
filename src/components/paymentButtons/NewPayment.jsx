@@ -36,6 +36,7 @@ transform: scale(1);
 transition:0s 0s;
 
 }
+
 `
 
 export default NewPayment

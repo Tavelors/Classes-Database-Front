@@ -23,7 +23,7 @@ const PutAbsenceTrue = ({index, list, class_id, setPutAbsence, setStudentLesson,
         
         updatePresence(false, false, false, true, class_id, logNote)
     }
-// console.log(putPresence);
+
   return <Button style={{background: 'red'}} onClick={presenceClick} >❌</Button>
 }
 
@@ -45,6 +45,11 @@ background-color: #72b340;
 transform: scale(1);
 transition:0s 0s;
 
+}
+@media screen and (max-width: 960px) {
+  height:60px;
+  width: 60px;
+  font-size: 25px;
 }
 `
 

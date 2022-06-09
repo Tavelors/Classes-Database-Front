@@ -1,27 +1,34 @@
 import React, {useEffect, useState} from 'react'
 import {Link, useNavigate} from 'react-router-dom'
-import {getStudents} from '../utils/api'
-import CreateClass from './CreateClass'
-import SortBy from './SortBy'
-import UpdateConcluded from './paymentButtons/UpdateConcluded'
+import {getStudents} from '../../utils/api'
+import SortBy from './../SortBy'
+import UpdateConcluded from './../paymentButtons/UpdateConcluded'
 import styled from 'styled-components'
-import NewStudent from './NewStudent'
-import SearchStudent from './SearchStudent'
-import DeleteStudent from './DeleteStudent'
-const Students = ({students, setStudents, oldList, setOldList}) => {
+import NewStudent from './../NewStudent'
+import SearchStudent from './../SearchStudent'
+import DeleteStudent from './../DeleteStudent'
+const MobileStudents = () => {
   const navigate = useNavigate()
 const token = localStorage.getItem("alphstains-secret-user-token");
 if(!token) {
     navigate('/login')
 }
-
-const [popupDeleteButton, setPopupDeleteButton] = useState(false)
+const [loading, setLoading] = useState(true)
+const [students, setStudents] = useState([])
 const [concludedStudent, setConcludedStudent] = useState(false)
 const [showForm, setShowForm] = useState(false)
 const [showPost, setShowPost] = useState(false)
 const [showSearch, setShowSearch] = useState(false)
+const [oldList, setOldList] = useState([])
 const [showDelete, setShowDelete] = useState(false)
-
+   useEffect(() => {
+     getStudents().then((list) => {
+   
+       setLoading(false)
+       setStudents(list.student)
+       setOldList(list.student)
+      })
+   },[])
 
 let sortForm;
 let createStudent;
@@ -41,7 +48,9 @@ if(showDelete) {
     thDelete = <ShowButton><button onClick={() => setShowDelete(false)} >Hide</button></ShowButton>
 }
 
-
+if(loading) {
+  return <h1 >Loading...</h1>
+} else {
 
   
   return (
@@ -68,19 +77,7 @@ if(showDelete) {
    {createStudent}
    {searchStudent}
     </StyledDiv>
-    <StyledTable>
-            <thead>
-
-            <tr>
-                <th>Student</th>
-                <th>Presence</th>
-                <th>Bank</th>
-                <th>Payment</th>
-                <th>Classes</th>
-                <th>Concluded</th>
-               {thDelete}
-            </tr>
-            </thead>
+  
 
     {students.map((student, index) => {
       let paymentStatusButton;
@@ -101,43 +98,59 @@ if(showDelete) {
       }
       
         return (
-            <tbody key={student._id}>
+            <StyledTable key={student._id}>
+                <tbody>
+
                 <tr>
-                <TableName style={paymentConcludedStyle} className='student-name' ><p>{student.firstName}</p><p>{student.lastName}</p></TableName>
-                <td style={paymentConcludedStyle} >{student.presence}</td>
-                <td style={paymentConcludedStyle} >{student.bank}</td>
-                <td style={paymentConcludedStyle} > <Link to={`/payments/${student._id}/`} >
+                <TableName style={paymentConcludedStyle} className='student-name' > <div>Student</div><p>{student.firstName}</p><p>{student.lastName}</p></TableName>
+                <td style={paymentConcludedStyle} ><div>Concluded</div><UpdateConcluded index={index} student={student} firstName={student.firstName} student_id={student._id} setStudents={setStudents} concludedBool={student.concluded} /></td>
+                </tr>
+                <tr>
+                <td style={paymentConcludedStyle} >
+                    <div>Presence</div>
+                    {student.presence}
+                    </td>
+                <td style={paymentConcludedStyle} ><div>Bank</div>{student.bank}</td>
+                </tr>
+                <tr>
+                <td style={paymentConcludedStyle} ><div>Payment</div> <Link to={`/payments/${student._id}/`} >
                 {paymentStatusButton} </Link> </td>
-                <td style={paymentConcludedStyle} ><Link to={`/students/${student._id}`} >
-                <ClassButton>📅</ClassButton> 
-                </Link> 
-                </td>
-                <td style={paymentConcludedStyle} ><UpdateConcluded index={index} student={student} firstName={student.firstName} student_id={student._id} setStudents={setStudents} concludedBool={student.concluded} /></td>
+                <td style={paymentConcludedStyle} ><div>Classes</div><Link to={`/students/${student._id}`} >
+                    <ClassButton>📅</ClassButton> </Link> </td>
+                </tr>
+                <tr style={paymentConcludedStyle} >
+
+                {thDelete}
                 <td style={paymentConcludedStyle} >{showDeleteButton}</td>
                 </tr>
-            </tbody>
+                
+                </tbody>
+            </StyledTable>
            
            
            )
           })}
     
-        </StyledTable>
+       
    
     </>
   )
 }
-
+}
 
 const TableName = styled.td/*css*/`
-
+padding: 0px;
 p {
-    font-size: 20px;
+    word-wrap: break-word;
+    font-size: 16px;
     margin: 5px;
+    margin-bottom:10px;
     font-weight: bold;
+    
 }
 `
 
-const DeleteButton = styled.th/*css*/`
+const DeleteButton = styled.td/*css*/`
 padding: 0px;
 button {
     background-color:red;
@@ -159,10 +172,14 @@ button {
     transition:0s 0s;
     
     }
+    @media screen and (max-width: 960px) {
+        height:60px;
+        width: 60px;
+      }
 }
 
 `
-const ShowButton = styled.th/*css*/`
+const ShowButton = styled.td/*css*/`
 padding: 0px;
 button {
     background-color: green;
@@ -184,15 +201,19 @@ button {
     transition:0s 0s;
     
   }
+  @media screen and (max-width: 960px) {
+    height:60px;
+    width: 60px;
+  }
 }
 
 `
 
 const StyledDiv = styled.div/*css*/`
-@media screen and (max-width: 960px) {
-  display:none;
-
-}
+@media screen and (min-width: 960px) {
+    display:none;
+  
+  }
 button {
   color: black;
   font-weight: bold;
@@ -216,10 +237,11 @@ button {
     transition:0s 0s;
     
   }
+  
 `
 
 const StyledTable = styled.table/*css*/`
-@media screen and (max-width: 960px) {
+@media screen and (min-width: 960px) {
   display:none;
 
 }
@@ -236,8 +258,15 @@ tr {
   
 }
 tr, td {
-    font-size: 20px;
-
+   max-width: 130px;
+   max-height: 130px;
+    width: 130px;
+   
+    height: 130px;  
+}
+tr, td, div {
+    margin-bottom: 15px;
+    font-weight: bold;
 }
 
 `
@@ -259,6 +288,11 @@ transform: scale(1);
 transition:0s 0s;
 
 }
+@media screen and (max-width: 960px) {
+    height:60px;
+    width: 60px;
+    font-size: 25px;
+  }
 
 `
 
@@ -281,6 +315,11 @@ transform: scale(1);
 transition:0s 0s;
 
 }
+@media screen and (max-width: 960px) {
+    height:60px;
+    width: 60px;
+    font-size: 25px;
+  }
 `
 const ConcludedButton = styled.button/*css*/`
 background-color: lightblue;
@@ -293,8 +332,4 @@ font-size: 20px;
 
 `
 
-export default Students
-
-
-
-{/* <td><CreateClass firstName={student.firstName} lastName={student.lastName}  student_id={student._id} trigger={popupDeleteButton} setTrigger={setPopupDeleteButton} /></td> */}
+export default MobileStudents

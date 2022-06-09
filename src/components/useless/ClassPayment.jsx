@@ -1,7 +1,7 @@
 import React, {useEffect, useState}from 'react'
 import {useParams} from 'react-router-dom'
-import {getClassPayment} from '../utils/api'
-import PayUpFront from './paymentButtons/PayUpFront'
+import {getClassPayment} from '../../utils/api'
+import PayUpFront from '../paymentButtons/PayUpFront'
 const ClassPayment = () => {
 const {class_id} = useParams()
 const [payMent, setPayMent] = useState([])

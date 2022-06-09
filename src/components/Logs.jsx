@@ -19,7 +19,7 @@ useEffect(() => {
 },[])
 
 if(loading) {
-    return <div class="spinner"></div>
+    return <h1 >Loading...</h1>
      } else {
 
     return (

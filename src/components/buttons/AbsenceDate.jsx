@@ -7,20 +7,16 @@ const AbsenceDate = ({class_id, setStudentLesson, student_id, firstName, lastNam
     const [startDate, setStartDate] = useState(new Date())
     
  const changeDate = async (e) => {
-     e.preventDefault()
+   e.preventDefault()
+   await updateStudentBankAndPresence(student_id, -1)
      const post = await  postAbsenceClass(firstName, lastName, student_id)
      setStudentLesson(current => [post.class, ...current] )
      const logDate = new Intl.DateTimeFormat('en-GB', { dateStyle: 'short', timeStyle: 'short' }).format(startDate)
   const logNote = `Student: ${firstName}, Class: ${class_number}, Rescheduled Class set to ${logDate}`
-    // const logNote = `rescheduled absence class date to ${startDate} from ${firstName} ${class_number} `
-    // const noteLog =
-    // logNote.substring(0, 43) +
-    // logNote.substring(logNote.length - 14, logNote.length);
    const curr = await  AbsenceDatePick(class_id, startDate, logNote)
        await updateDate(post.class._id, startDate, logNote)
 
      const secondCurr = await AbsenceDatePick(post.class._id, curr.AbsenceDate)
-     updateStudentBankAndPresence(student_id, -1, 1)
           
          setStudentLesson((setDate) => {
             let newDate = [...setDate]
@@ -32,7 +28,7 @@ const AbsenceDate = ({class_id, setStudentLesson, student_id, firstName, lastNam
             }
             return newDate
          })
-    // await updatePresence(false, false, true, false, post.class_id)
+
     
     setStudentLesson((post) => {
         let newDate = [...post]
@@ -44,7 +40,7 @@ const AbsenceDate = ({class_id, setStudentLesson, student_id, firstName, lastNam
 
         return newDate
     })
-// })
+
  }
  
 
@@ -94,6 +90,11 @@ button {
   transition:0s 0s;
   
 }
+@media screen and (max-width: 960px) {
+  height:30px;
+  width: 80px;
+  font-size: 15px;
+}
 }
 }
 .datepicker {
@@ -107,6 +108,12 @@ button {
   border:2px solid black;
   &:hover {
     transform: scale(1.3);
+  }
+  @media screen and (max-width: 960px) {
+    margin-bottom: 15px;
+    height:40px;
+    width: 90px;
+    font-size: 16px;
   }
 }
 `

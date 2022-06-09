@@ -3,7 +3,7 @@ import {updatePresence, updateStudentBankAndPresence} from '../../utils/api'
 import styled from 'styled-components'
 
 const PutRescheduledPresenceTrue = ({class_id, setPutRescheduledPresence, setStudentLesson, student_id}) => {
-    // const [putPresence, setPutPresence] = useState(false)
+ 
 
     const presenceClick = (e) => {
         updateStudentBankAndPresence(student_id, 1, -1)
@@ -23,7 +23,7 @@ const PutRescheduledPresenceTrue = ({class_id, setPutRescheduledPresence, setStu
             
         })
     }
-// console.log(putPresence);
+
   return <Button style={{background: 'red'}} onClick={presenceClick} >&nbsp;</Button>
 }
 

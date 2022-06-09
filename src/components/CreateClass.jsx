@@ -15,13 +15,13 @@ const logNote = `Student: ${firstName}, Class Created`
         if(createClassButton) {
           
           postClass(student_id, logNote).then((post) => {
-            console.log(post);
+         
             setStudentLesson(curr => [post.class, ...curr])
               
             SetCreateClassButton(false)
           })
         }
-        // window.location.reload(true);
+
       }
     let stuff = 0
     if(stuff < 5) {

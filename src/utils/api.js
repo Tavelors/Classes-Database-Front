@@ -4,6 +4,8 @@ axios.interceptors.request.use((config) => {
   config.headers.authorization = `Bearer ${token}`;
   return config;
 });
+// https://schedule-everytim.herokuapp.com/api
+// http://localhost:5800/api
 const otherURL = `https://schedule-everytim.herokuapp.com/api`;
 const originalURL = axios.create({
   baseURL: "https://schedule-everytim.herokuapp.com/api",
@@ -146,16 +148,11 @@ export const updateStudentPresence = async (student_id, presenceNum) => {
   return data;
 };
 
-export const updateStudentBankAndPresence = async (
-  student_id,
-  absenceNum,
-  presenceNum
-) => {
+export const updateStudentBankAndPresence = async (student_id, absenceNum) => {
   const { data } = await axios.put(
     `${otherURL}/students/update/${student_id}`,
     {
       bank: absenceNum,
-      presence: presenceNum,
     }
   );
 
@@ -288,5 +285,17 @@ export const getClassById = async (class_id) => {
 
 export const deleteStudent = async (student_id) => {
   const { data } = await axios.delete(`${otherURL}/students/${student_id}`);
+  return data;
+};
+
+export const deletePay = async (pay_id) => {
+  const { data } = await axios.delete(`${otherURL}/pay/delete/${pay_id}`);
+  return data;
+};
+
+export const removeAbsenceDate = async (class_id) => {
+  const { data } = await axios.put(`${otherURL}/class/update/${class_id}`, {
+    AbsenceDate: undefined,
+  });
   return data;
 };

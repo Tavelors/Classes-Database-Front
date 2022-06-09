@@ -1,15 +1,14 @@
 import React, {useEffect, useState} from 'react'
-import {getPaymentByStudent,getStudentById} from '../utils/api'
+import {getPaymentByStudent,getStudentById} from '../../utils/api'
 import styled from 'styled-components'
 import {useParams} from 'react-router-dom'
-import PaymentDate from './paymentButtons/PaymentDate'
-import PaymentPaid from './paymentButtons/PaymentPaid'
-import NewPayment from './paymentButtons/NewPayment'
-import PaymentConcluded from './paymentButtons/PaymentConcluded'
-import PaymentType from './paymentButtons/PaymentType'
-import DeletePay from './paymentButtons/DeletePay'
+import PaymentDate from './../paymentButtons/PaymentDate'
+import PaymentPaid from './../paymentButtons/PaymentPaid'
+import NewPayment from './../paymentButtons/NewPayment'
+import PaymentType from './../paymentButtons/PaymentType'
+import DeletePay from './../paymentButtons/DeletePay'
 import Moment from 'react-moment'
-const Payments = ({setConcludedStudent}) => {
+const MobilePayments = () => {
     const {student_id} = useParams()
 const [pay, setPay] = useState([])
 const [student, setStudent] = useState({})
@@ -17,9 +16,6 @@ const [loading, setLoading] = useState(true)
 const [showDelete, setShowDelete] = useState(false)
 
         useEffect(() => {
-            // getStudentById(student_id).then((list) => {
-            //     setStudent(list)
-            // })
             getPaymentByStudent(student_id).then((list) => {
                 setLoading(false)
                     setPay(list)
@@ -37,66 +33,68 @@ const [showDelete, setShowDelete] = useState(false)
 
             return (
                 <>
+                
       <h2>{pay.firstName} {pay.lastName}</h2>
       <HideDiv>
 
       <NewPayment student_id={student_id} setPay={setPay} />
       </HideDiv>
-    <StyledTable>
-         <thead>
+  
 
-<tr>
-    
-    <th>Payment Type</th>
-    <th>Date</th>
-    <th>Paid</th>
-    {thDelete}
-
-</tr>
-</thead>
         {pay.map((list, index) => {
              let showDeleteButtons;
        if(showDelete) {
         showDeleteButtons = <DeletePay index={index} list={list} pay_id={list._id} setPay={setPay} firstName={list.firstName}  />
            }
            
-   
+          
             return (
 
-                <tbody key={`${list._id}${index}`}>
+                <StyledTable key={`${list._id}${index}`}>
+                  
+                    <tbody>
+
            <tr>
-           
-           
+               <td>Payment Type</td>
            <td><PaymentType index={index} list={list} pay_id={list._id} setPay={setPay} paymentType={list.paymentType} /> </td>
-           <TD  ><PaymentDate pay_id={list._id} setPay={setPay}  /><Moment className='date-format' format='MMMM YY' >{list.dateChange}</Moment></TD>
-           <td><PaymentPaid index={index} list={list} pay_id={list._id} setPay={setPay} paidBoolean={list.paid} firstName ={student.firstName} /></td>
-           <td>{showDeleteButtons}</td>
-          
-         
-           
-        
            </tr>
-       </tbody>
+           <tr>
+           <td>Date</td>
+           <TD  ><PaymentDate pay_id={list._id} setPay={setPay}  /><Moment className='date-format' format='MMMM YY' >{list.dateChange}</Moment></TD>
+           </tr>
+           <tr>
+           <td>Paid</td>
+           <td><PaymentPaid index={index} list={list} pay_id={list._id} setPay={setPay} paidBoolean={list.paid} firstName ={student.firstName} /></td>
+           </tr>
+           <tr>
+               {thDelete}
+               {showDeleteButtons}
+           </tr>
+           
+                    </tbody>
+                   
+       </StyledTable>
+      
        
        )
-    })}
-    </StyledTable>
-    
-      </>
-  )
-}
-}
 
+    })}
+      </>
+      )}}
 const HideDiv = styled.div/*css*/`
-@media screen and (max-width: 960px) {
+@media screen and (min-width: 960px) {
     display:none;
       }
 `
 
+
 const StyledTable = styled.table/*css*/`
-@media screen and (max-width: 960px) {
-display:none;
-  }
+margin-bottom: 30px;
+padding: 10px;
+border: 2px solid;
+@media screen and (min-width: 960px) {
+    display:none;
+      }
 margin-right: auto;
 margin-left: auto;
 `
@@ -123,7 +121,7 @@ const TD = styled.td/*css*/`
 // }
 // `
 
-const ShowButton = styled.th/*css*/`
+const ShowButton = styled.td/*css*/`
 padding: 0px;
 button {
     background-color: green;
@@ -145,10 +143,15 @@ button {
     transition:0s 0s;
     
     }
+    @media screen and (max-width: 960px) {
+        height:60px;
+        width: 60px;
+        font-size: 15px;
+      }
 }
 
 `
-const DeleteButton = styled.th/*css*/`
+const DeleteButton = styled.td/*css*/`
 padding: 0px;
 button {
     background-color:red;
@@ -170,10 +173,13 @@ button {
     transition:0s 0s;
     
     }
-    
-    
+    @media screen and (max-width: 960px) {
+        height:60px;
+        width: 60px;
+        font-size: 15px;
+      }
 }
 
 `
 
-export default Payments
+export default MobilePayments

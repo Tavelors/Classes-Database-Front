@@ -41,7 +41,7 @@ const StyledButton = styled.button/*css*/`
     color: black;
   font-weight: bold;
 //   margin: 5px;
-  margin-bottom:20px;
+  // margin-bottom:20px;
 //   width: 120px;
 //   height: 50px;
 //   font-size: 15px;
@@ -59,6 +59,11 @@ const StyledButton = styled.button/*css*/`
   transform: scale(1);
   transition:0s 0s;
   
+}
+@media screen and (max-width: 960px) {
+  height:60px;
+  width: 60px;
+  font-size: 25px;
 }
 `
 

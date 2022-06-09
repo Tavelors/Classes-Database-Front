@@ -5,28 +5,14 @@ import "react-datepicker/dist/react-datepicker.css";
 import styled from 'styled-components'
 const DatePick = ({class_id, setStudentLesson, class_number, firstName}) => {
     const [startDate, setStartDate] = useState(new Date())
-    // const ExampleCustomTimeInput = ({ date, value, onChange }) => (
-      //   <input
-      //     value={value}
-    //     onChange={(e) => onChange(e.target.value)}
-    //     style={{ border: "solid 1px pink" }}
-    //   />
-    // );
-    
-    // const handleColor = (time) => {
-      //   return time.getHours() > 12 ? "text-success" : "text-error";
-      // }
+
       const changeDate = (e) => {
+        e.preventDefault();
 
         const logDate = new Intl.DateTimeFormat('en-GB', { dateStyle: 'short', timeStyle: 'short' }).format(startDate)
-  const logNote = `Student: ${firstName}, Class: ${class_number}, Class Date set to ${logDate}`
-  // console.log(logDate);
-  // console.log(startDate.toLocaleDateString("ar-EG"), options)
-  // console.log(new Intl.DateTimeFormat('en-GB', { dateStyle: 'short', timeStyle: 'short' }).format(startDate))
-  e.preventDefault();
-  // console.log(date);
-  // setStartDate(date)
-  updateDate(class_id, startDate, logNote).then((curr) => {
+        const logNote = `Student: ${firstName}, Class: ${class_number}, Class Date set to ${logDate}`
+
+      updateDate(class_id, startDate, logNote).then((curr) => {
     
 setStudentLesson((post) => {
   let newDate = [...post]
@@ -35,8 +21,7 @@ setStudentLesson((post) => {
         newDate.splice(i,1,curr)
       }
     }
-    // console.log(curr);
-    // console.log(newDate);
+
     return newDate
   })
 })
@@ -92,6 +77,11 @@ button {
   transition:0s 0s;
   
 }
+@media screen and (max-width: 960px) {
+  height:30px;
+  width: 80px;
+  font-size: 15px;
+}
 }
 }
 .datepicker {
@@ -105,6 +95,13 @@ button {
   border:2px solid black;
   &:hover {
     transform: scale(1.3);
+    
+  }
+  @media screen and (max-width: 960px) {
+    margin-bottom: 15px;
+    height:40px;
+    width: 90px;
+    font-size: 16px;
   }
 }
 `

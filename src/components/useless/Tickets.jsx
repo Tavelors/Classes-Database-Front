@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import {getTickets} from '../utils/api'
+import {getTickets} from '../../utils/api'
 const StudentClass = ({student_id}) => {
   const [ticket, setTicket] = useState([])
     const [date, setDate] = useState("");

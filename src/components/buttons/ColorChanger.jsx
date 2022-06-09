@@ -30,11 +30,7 @@ const ColorChanger = ({classNum,  list,index, class_id, colorChange, setStudentL
           await updateColor(true, class_id)
         }
     }
- 
-
-
-        
-      
+     
 
   return <Button onClick={handleClick} >{index}</Button>
 }
@@ -54,6 +50,11 @@ background-color: #72b340;
 transform: scale(1);
 transition:0s 0s;
 
+}
+@media screen and (max-width: 960px) {
+  height:60px;
+  width: 60px;
+  font-size: 25px;
 }
 `
 

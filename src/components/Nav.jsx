@@ -134,7 +134,7 @@ const Nav = () => {
   const navigate = useNavigate()
     const [showNav, setShowNav] = useState(false)
     const currentURL = window.location.pathname
-    console.log(currentURL);
+   
     const token = localStorage.getItem("alphstains-secret-user-token");
     if(!token) {
         return ''

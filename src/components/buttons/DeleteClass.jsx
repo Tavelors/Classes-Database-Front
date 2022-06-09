@@ -66,6 +66,11 @@ background-color: red;
     transition:0s 0s;
     
   }
+  @media screen and (max-width: 960px) {
+    height:60px;
+    width: 60px;
+    font-size: 25px;
+  }
 `
 const PopupStyle = styled.div/*css*/`
 .popup {

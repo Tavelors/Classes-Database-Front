@@ -30,6 +30,11 @@ background-color: red;
 &:hover {
     transform: scale(1.1);
 }
+@media screen and (max-width: 960px) {
+    height:60px;
+    width: 60px;
+    font-size: 25px;
+  }
 `
 
 export default UnlockButton

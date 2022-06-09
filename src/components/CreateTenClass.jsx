@@ -9,13 +9,13 @@ const CreateTenClass = ({firstName, student_id, trigger, setTrigger, createClass
       if(createClasses) {
         
         postTenClass(student_id, logNote).then((post) => {
-          console.log(post);
+       
           setStudentLesson(curr => [post.classTen, post.classNine,post.classEight,post.classSeven,post.classSix,post.classFive,post.classFour,post.classThree,post.classTwo,post.classOne, ...curr])
             
           SetCreateClasses(false)
         })
       }
-      // window.location.reload(true);
+   
     }
   let stuff = 0
   if(stuff < 5) {

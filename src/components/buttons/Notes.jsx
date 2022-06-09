@@ -15,18 +15,17 @@ const {class_id} = useParams()
 useEffect(() => {
   getClassById(class_id).then((list) => {
     setStudentClass(list)
-    console.log(list);
+   
     setClassNotes(list.description)
   } )
   },[class_id])
 
-console.log(classNotes);
   const handleSubmit = (e) => {
     e.preventDefault()
     const logNote = `Student: ${studentClass.firstName}, Class: ${studentClass.classNumber}, Updated Notes`
     updateNotes(class_id, classNotes, logNote)
   }
-// console.log(student);
+
   return (
     <>
          <Link to={`/students/${studentClass.student_id}`} >
@@ -44,6 +43,7 @@ console.log(classNotes);
   )
 }
 const Button = styled.button/*css*/`
+
 font-size: 15px;
 background-color: #72b3d0;
 transition:0.2s 0.2s;
@@ -61,6 +61,11 @@ transform: scale(1);
 transition:0s 0s;
 
 } 
+// @media screen and (max-width: 960px) {
+//   height:60px;
+//   width: 60px;
+//   font-size: 15px;
+// }
 }
 `
 

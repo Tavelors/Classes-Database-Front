@@ -7,7 +7,7 @@ import Logout from './Logout'
 const Home = ({local_user_id}) => {
     const currentURL = window.location.pathname
     const navigate = useNavigate()
-    console.log(currentURL);
+  
 const [button, setButton] = useState([])
 useEffect(() => {
 
@@ -40,9 +40,9 @@ useEffect(() => {
 
 const handle = (async () => {
     const user = await getUser()
-    console.log(user);
+   
 })
-console.log(button);
+
 
 
   return (

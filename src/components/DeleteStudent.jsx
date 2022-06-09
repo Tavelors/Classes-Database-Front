@@ -5,7 +5,6 @@ const DeleteStudent = ({index, student, firstName, student_id, setStudents}) => 
 
     const deleteButton = () => {
         const logNote = `Student: ${firstName},  Student Deleted`
-console.log('here');
             setStudents(curr => {
                 let newList = [...curr]
                 newList.splice(index,1)
@@ -16,7 +15,7 @@ console.log('here');
     }
 
   return (
-    <Button onClick={deleteButton} ></Button>
+    <Button onClick={deleteButton} >🗑️</Button>
   )
 }
 
@@ -38,6 +37,11 @@ background-color: red;
     transform: scale(1);
     transition:0s 0s;
     
+  }
+  @media screen and (max-width: 960px) {
+    height:60px;
+    width: 60px;
+    font-size: 25px;
   }
 `
 

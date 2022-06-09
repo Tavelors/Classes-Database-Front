@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import {useParams} from 'react-router-dom'
 import { getStudentById } from '../utils/api'
 import StudentClass from './StudentClass'
+import MobileStudentClass from './mobile/MobileStudentClass'
 import CreateClass from './CreateClass'
 import CreateTenClass from './CreateTenClass'
 import DeleteClass from './buttons/DeleteClass'
@@ -32,10 +33,9 @@ SetCreateClassButton(true)
     SetCreateClasses(true)
   }
  if(loading){
-  return <div class="spinner"></div>
+  return <h1 >Loading...</h1>
  } else {
 
-   // console.log(student._id);
    return (
      <StyledDiv>
     <ul>
@@ -63,6 +63,7 @@ SetCreateClassButton(true)
         </li>
         <li className="table" >
             <StudentClass studentLesson={studentLesson} setStudentLesson={setStudentLesson} student_id={student_id}  />
+            <MobileStudentClass studentLesson={studentLesson} setStudentLesson={setStudentLesson} student_id={student_id}   />
         </li>
     </ul>
     </StyledDiv>

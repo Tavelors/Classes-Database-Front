@@ -1,7 +1,7 @@
 import React from 'react'
 import {updatePaymentType} from '../../utils/api'
 const PayUpFront = ({pay_id}) => {
-console.log(pay_id);
+
         const handleClick = () => {
             updatePaymentType()
         }

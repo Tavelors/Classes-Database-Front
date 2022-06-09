@@ -8,7 +8,6 @@ const PaymentDate = ({pay_id, setPay}) => {
     const [startDate, setStartDate] = useState(new Date())
    
  const changeDate = (date) => {
-console.log(date);
     updatePaymentDate(pay_id, date).then((curr) => {
       setStartDate(date)
 
@@ -19,8 +18,7 @@ console.log(date);
               newDate.splice(i,1,curr)
             }
           }
-          // console.log(curr);
-          // console.log(newDate);
+
           return newDate
 })
     })
@@ -64,6 +62,11 @@ z-index: 2;
   transform: scale(1);
   transition:0s 0s;
   
+}
+@media screen and (max-width: 960px) {
+  height:25px;
+  width: 70px;
+  font-size: 13px;
 }
 `
 
